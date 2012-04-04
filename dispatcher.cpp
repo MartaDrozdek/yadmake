@@ -15,11 +15,30 @@ using namespace std;
 
 class Computer{};
 
-void error(){}
+void print(const char s[]){
+   printf("%s\n",s);
+}
+
+void error(){
+   print("error");
+}
+
+void print_main_leaf(DependencyGraph * graph){
+   print("main:");
+	BOOST_FOREACH(Target * t, graph->main_targets)
+      print(t->name.c_str());
+
+   print("leaf:");
+	BOOST_FOREACH(Target * t, graph->leaf_targets)
+      print(t->name.c_str());
+   print("");
+}
 
 /* bierze target, wykonuje wszystkie komendy w command */
 int realize(Target * t, Computer * c){
-
+   
+   print("realize:");
+   print(t->name.c_str());
 	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 	
 	boost::char_separator<char> sep("\n");
@@ -49,10 +68,6 @@ void init_free_comp(vector<Computer *> & free_comp){
    free_comp.push_back(NULL);
 }
 
-void print(const char s[]){
-   printf("%s\n",s);
-}
-
 void dispatcher(){
 
 	vector<Target *> targets;	// only these ready to make
@@ -68,24 +83,25 @@ void dispatcher(){
 	// get graph
 	DependencyGraph dependency_graph(0);
    print("dep graph");
-   // get commands
-   // basics TODO
+   print_main_leaf(&dependency_graph);
+   // get commands      TODO
+
+/*   
    basics.push_back("make");
    count_commands(&dependency_graph, basics, "blah");
-   print("coutn commands");
+   print("count commands");
+  */ 
 
-	// init free_comp
    init_free_comp(free_comp);
 
 	// init targets
-
 	targets = dependency_graph.leaf_targets;
 
 	// (proces dla każdego targetu)
 
 	child_count = 0;
-
-	while(!targets.empty() && child_count > 0){
+   
+	while(!targets.empty() || child_count > 0){
 		while (!targets.empty() && !free_comp.empty()){
 			Target *t = targets.back();
 			targets.pop_back();
@@ -121,8 +137,8 @@ void dispatcher(){
 		}
 		--child_count;
 
-		comp.erase(who);
 		free_comp.push_back(comp[who]);
+		comp.erase(who);
 
 		Target *t = targ[who];
 		targ.erase(who);
@@ -141,7 +157,6 @@ void realize_test(){
 	Computer c;
 	t.set_command("echo ala\necho alala\necho ololo");
 	realize(&t, &c);
-
 }
 
 void jakis_test(){

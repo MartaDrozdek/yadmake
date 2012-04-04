@@ -36,6 +36,7 @@ class Target {
 	friend std::vector<std::vector<Target*> > get_levels(DependencyGraph graph);
 	friend void count_one_level(const std::vector<std::string>& basics, const std::string& delimiter,
 			const std::vector<Target*>& to_make, const std::vector<Target*>& not_to_make);
+
 	public:
 	const int id;
 	const std::string name;
@@ -50,17 +51,14 @@ class Target {
 
 	int topo_ord;		/* ile dependencies jeszcze nie zrealizowanych */
 	
-	const std::list<Target*>  & get_dependent_targets() const{
-		return dependent_targets;	
-	}
-	const std::string & get_command() const{
-		return command;
-	}
-	void set_command(const std::string &s){
-		command = s;
-	}
-	std::list<Target*> dependent_targets;
+	const std::list<Target*>  & get_dependent_targets() const;
+
+	const std::string & get_command() const;
+
+	void set_command(const std::string &s);
+
 	int inord;
+	std::list<Target*> dependent_targets;
 	protected:
 	std::list<Target*> dependencies;
 	std::list<std::string> needed_files;
