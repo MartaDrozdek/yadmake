@@ -9,6 +9,7 @@
 #include <string>
 #include <boost/foreach.hpp>
 #include <string>
+#include "commands.h"
 
 using namespace std;
 
@@ -44,6 +45,14 @@ void mark_realized(Target * t, vector<Target*> & targets){
    }
 }
 
+void init_free_comp(vector<Computer *> & free_comp){
+   free_comp.push_back(NULL);
+}
+
+void print(const char s[]){
+   printf("%s\n",s);
+}
+
 void dispatcher(){
 
 	vector<Target *> targets;	// only these ready to make
@@ -51,13 +60,19 @@ void dispatcher(){
 	vector<Computer *> free_comp;
 	map<pid_t, Computer *> comp;
 	int child_count;
-
+   vector<string> basics;
 	// read data about available computers
 
 	// connect with them (check connection or sth)
 
 	// get graph
 	DependencyGraph dependency_graph(0);
+   print("dep graph");
+   // get commands
+   // basics TODO
+   basics.push_back("make");
+   count_commands(&dependency_graph, basics, "blah");
+   print("coutn commands");
 
 	// init free_comp
    init_free_comp(free_comp);
@@ -87,6 +102,7 @@ void dispatcher(){
 					if (realize(t, c) != 0){
 						error();
 					}
+               exit(0);
 					break;
 				default:	
 					++child_count;

@@ -59,11 +59,11 @@ class Target {
 	void set_command(const std::string &s){
 		command = s;
 	}
-	protected:
 	std::list<Target*> dependent_targets;
+	int inord;
+	protected:
 	std::list<Target*> dependencies;
 	std::list<std::string> needed_files;
-	int inord;
 	int outord;
 	std::string command;	/* zakladam ze to komendy rozdzielone enterami */
 	static int idcounter;
