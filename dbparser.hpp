@@ -8,9 +8,6 @@
 #include <unordered_map>
 #include <vector>
 
-class Target;
-class DependencyGraph;
-
 class CircularDependency : public std::runtime_error {
 	public:
 		CircularDependency() : std::runtime_error("cycle in dependencies") {}
@@ -20,7 +17,6 @@ class DependencyGraph {
 	public:
 		std::vector<Target*> main_targets;
 		std::vector<Target*> leaf_targets;
-	/*	std::vector<Target*> get_sorted_targets(); */
 
 		DependencyGraph(std::istream& ins);
 		DependencyGraph(int fd);
@@ -28,7 +24,7 @@ class DependencyGraph {
 	protected:
 		void init(std::istream& ins);
 		void topological_sort(const std::unordered_map<std::string, Target*>& targets);
-		/* throws CircularDependency */
+			/* throws CircularDependency */
 };
 
 class Target {
@@ -68,5 +64,7 @@ class Target {
 	std::string command;	/* zakladam ze to komendy rozdzielone enterami */
 	static int idcounter;
 };
+
+int Target::idcounter = 0;
 
 #endif /* _DBPARSER_ */
