@@ -7,7 +7,7 @@
 g++ -Wall -Wextra -pedantic -std=gnu++0x -lboost_iostreams -MM main.cpp > main.d
 g++ -Wall -Wextra -pedantic -std=gnu++0x -lboost_iostreams -MM a.cpp > a.d
 
-# Make data base, printed on Wed Apr  4 18:22:48 2012
+# Make data base, printed on Wed Apr  4 23:17:11 2012
 
 # Variables
 
@@ -68,7 +68,7 @@ CPP = $(CC) -E
 # default
 LINK.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 # environment
-SSH_CONNECTION = 31.178.125.76 5997 193.0.96.129 22
+SSH_CONNECTION = 31.178.125.76 13770 193.0.96.129 22
 # environment
 PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/XLE/bin
 # default
@@ -78,7 +78,7 @@ TEXI2DVI = texi2dvi
 # default
 YACC = yacc
 # environment
-SSH_TTY = /dev/pts/67
+SSH_TTY = /dev/pts/82
 # default
 ARFLAGS = rv
 # default
@@ -154,7 +154,7 @@ HISTFILE = /home/students/inf/w/wb305160/.history
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-SHLVL = 2
+SHLVL = 1
 # default
 AS = as
 # default
@@ -185,8 +185,8 @@ MAKE_COMMAND := make
 LINK.cpp = $(LINK.cc)
 # default
 F77 = $(FC)
-# default
-COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# environment
+OLDPWD = /home/students/inf/w/wb305160/IO/yadmake
 # environment
 XLEPATH = /opt/XLE
 # default
@@ -204,7 +204,7 @@ MAKEFLAGS = p
 # environment
 MFLAGS = -p
 # environment
-SSH_CLIENT = 31.178.125.76 5997 22
+SSH_CLIENT = 31.178.125.76 13770 22
 # environment
 MAIL = /home/students/inf/w/wb305160/Mail/Maildir
 # environment
@@ -223,8 +223,12 @@ COMPILE.r = $(FC) $(FFLAGS) $(RFLAGS) $(TARGET_ARCH) -c
 M2C = m2c
 # default
 MAKEFILES := 
+# default
+COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
 # automatic
 <F = $(notdir $<)
+# environment
+PS1 = [\u@\h \W]\$ 
 # makefile (from `Makefile', line 2)
 CXX := g++
 # default
@@ -267,8 +271,10 @@ TERM = xterm
 F77FLAGS = $(FFLAGS)
 # default
 LINK.f = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+PS2 = > 
 # variable set hash-table stats:
-# Load=128/1024=12%, Rehash=0, Collisions=20/188=11%
+# Load=131/1024=13%, Rehash=0, Collisions=21/191=11%
 
 # Pattern-specific Variable Values
 
@@ -277,10 +283,10 @@ LINK.f = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 # Directories
 
 # SCCS: could not be stat'd.
-# . (device 65044, inode 3777593369): 9 files, 19 impossibilities.
+# . (device 65044, inode 271346188): 8 files, 19 impossibilities.
 # RCS: could not be stat'd.
 
-# 9 files, 19 impossibilities in 3 directories.
+# 8 files, 19 impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -814,7 +820,7 @@ a.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:41:45.3177995
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
@@ -878,7 +884,7 @@ debug:
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:48:07.045696498
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
@@ -891,7 +897,7 @@ main.cpp:
 # Not a target:
 a.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:41:45.3177995
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
@@ -975,7 +981,7 @@ all: a.d main.d main
 main.d: main.cpp
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2012-04-04 18:22:48.952228461
+#  Last modified 2012-04-04 23:17:11.813071512
 #  File has been updated.
 #  Successfully updated.
 # automatic
@@ -1135,7 +1141,7 @@ clean:
 a.d: a.cpp
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `a'
-#  Last modified 2012-04-04 18:22:48.992230339
+#  Last modified 2012-04-04 23:17:11.843072931
 #  File has been updated.
 #  Successfully updated.
 # automatic
@@ -1262,14 +1268,14 @@ main.o:
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 0 / lookups = 474 / hits = 474
+# # of strings in strcache: 0 / lookups = 473 / hits = 473
 # # of strcache buffers: 1 (* 8176 B/buffer = 8176 B)
-# strcache used: total = 0 (2652) / max = 0 / min = 8176 / avg = 0
-# strcache free: total = 0 (5524) / max = 0 / min = 8176 / avg = 0
+# strcache used: total = 0 (2647) / max = 0 / min = 8176 / avg = 0
+# strcache free: total = 0 (5529) / max = 0 / min = 8176 / avg = 0
 
 # strcache hash-table stats:
-# Load=265/8192=3%, Rehash=0, Collisions=188/474=40%
-# Finished Make data base on Wed Apr  4 18:22:48 2012
+# Load=264/8192=3%, Rehash=0, Collisions=187/473=40%
+# Finished Make data base on Wed Apr  4 23:17:11 2012
 
 # GNU Make 3.82
 # Built for x86_64-pld-linux-gnu
@@ -1278,7 +1284,7 @@ main.o:
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Apr  4 18:22:49 2012
+# Make data base, printed on Wed Apr  4 23:17:11 2012
 
 # Variables
 
@@ -1339,7 +1345,7 @@ CPP = $(CC) -E
 # default
 LINK.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 # environment
-SSH_CONNECTION = 31.178.125.76 5997 193.0.96.129 22
+SSH_CONNECTION = 31.178.125.76 13770 193.0.96.129 22
 # environment
 PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/XLE/bin
 # default
@@ -1349,7 +1355,7 @@ TEXI2DVI = texi2dvi
 # default
 YACC = yacc
 # environment
-SSH_TTY = /dev/pts/67
+SSH_TTY = /dev/pts/82
 # default
 ARFLAGS = rv
 # default
@@ -1425,7 +1431,7 @@ HISTFILE = /home/students/inf/w/wb305160/.history
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-SHLVL = 2
+SHLVL = 1
 # default
 AS = as
 # default
@@ -1456,8 +1462,8 @@ MAKE_COMMAND := make
 LINK.cpp = $(LINK.cc)
 # default
 F77 = $(FC)
-# default
-COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# environment
+OLDPWD = /home/students/inf/w/wb305160/IO/yadmake
 # environment
 XLEPATH = /opt/XLE
 # default
@@ -1477,7 +1483,7 @@ MAKEFLAGS = qp
 # environment
 MFLAGS = -qp
 # environment
-SSH_CLIENT = 31.178.125.76 5997 22
+SSH_CLIENT = 31.178.125.76 13770 22
 # environment
 MAIL = /home/students/inf/w/wb305160/Mail/Maildir
 # environment
@@ -1496,8 +1502,12 @@ COMPILE.r = $(FC) $(FFLAGS) $(RFLAGS) $(TARGET_ARCH) -c
 M2C = m2c
 # default
 MAKEFILES := 
+# default
+COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
 # automatic
 <F = $(notdir $<)
+# environment
+PS1 = [\u@\h \W]\$ 
 # makefile (from `Makefile', line 2)
 CXX := g++
 # default
@@ -1540,8 +1550,10 @@ TERM = xterm
 F77FLAGS = $(FFLAGS)
 # default
 LINK.f = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+PS2 = > 
 # variable set hash-table stats:
-# Load=129/1024=13%, Rehash=0, Collisions=18/177=10%
+# Load=132/1024=13%, Rehash=0, Collisions=19/180=11%
 
 # Pattern-specific Variable Values
 
@@ -1550,10 +1562,10 @@ LINK.f = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 # Directories
 
 # SCCS: could not be stat'd.
-# . (device 65044, inode 3777593369): 11 files, 38 impossibilities.
+# . (device 65044, inode 271346188): 10 files, 38 impossibilities.
 # RCS: could not be stat'd.
 
-# 11 files, 38 impossibilities in 3 directories.
+# 10 files, 38 impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -2088,7 +2100,7 @@ a.o: a.cpp
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:41:45.3177995
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
@@ -2152,7 +2164,7 @@ debug:
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:48:07.045696498
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
@@ -2165,7 +2177,7 @@ main.cpp:
 # Not a target:
 a.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:41:45.3177995
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
@@ -2252,7 +2264,7 @@ all: a.d main.d main
 main.d: main.cpp
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2012-04-04 18:22:48.952228461
+#  Last modified 2012-04-04 23:17:11.813071512
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from `Makefile', line 23):
@@ -2394,14 +2406,14 @@ clean:
 # Not a target:
 a.h:
 #  Implicit rule search has been done.
-#  Last modified 2012-04-04 17:41:45.3177995
+#  Last modified 2012-04-04 23:11:32.847091377
 #  File has been updated.
 #  Successfully updated.
 
 a.d: a.cpp
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `a'
-#  Last modified 2012-04-04 18:22:48.992230339
+#  Last modified 2012-04-04 23:17:11.843072931
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from `Makefile', line 23):
@@ -2534,12 +2546,12 @@ main.o: main.cpp a.h
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 0 / lookups = 680 / hits = 680
+# # of strings in strcache: 0 / lookups = 679 / hits = 679
 # # of strcache buffers: 1 (* 8176 B/buffer = 8176 B)
-# strcache used: total = 0 (3871) / max = 0 / min = 8176 / avg = 0
-# strcache free: total = 0 (4305) / max = 0 / min = 8176 / avg = 0
+# strcache used: total = 0 (3866) / max = 0 / min = 8176 / avg = 0
+# strcache free: total = 0 (4310) / max = 0 / min = 8176 / avg = 0
 
 # strcache hash-table stats:
-# Load=389/8192=5%, Rehash=0, Collisions=224/680=33%
-# Finished Make data base on Wed Apr  4 18:22:49 2012
+# Load=388/8192=5%, Rehash=0, Collisions=223/679=33%
+# Finished Make data base on Wed Apr  4 23:17:11 2012
 

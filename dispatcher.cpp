@@ -4,16 +4,14 @@
 #include <wait.h>
 #include <vector>
 #include <map>
-#include "dbparser.hpp"
 #include <boost/tokenizer.hpp>
 #include <string>
 #include <boost/foreach.hpp>
 #include <string>
+#include "dbparser.hpp"
 #include "commands.h"
 
 using namespace std;
-
-class Computer{};
 
 void print(const char s[]){
    printf("%s\n",s);
@@ -42,7 +40,7 @@ int realize(Target * t, Computer * c){
 	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 	
 	boost::char_separator<char> sep("\n");
-   tokenizer tok(t->get_command(), sep);
+   tokenizer tok(t->command, sep);
 
 	BOOST_FOREACH(string s, tok)
 		system(s.c_str());
@@ -57,7 +55,7 @@ void mark_realized(Target * t, vector<Target*> & targets){
 
 	t->realized = true;
 
-   BOOST_FOREACH(Target * i, t->get_dependent_targets()){
+   BOOST_FOREACH(Target * i, t->dependent_targets){
       --(i->topo_ord);
       if (i->topo_ord == 0)
          targets.push_back(i);
@@ -86,11 +84,9 @@ void dispatcher(){
    print_main_leaf(&dependency_graph);
    // get commands      TODO
 
-/*   
    basics.push_back("make");
    count_commands(&dependency_graph, basics, "blah");
    print("count commands");
-  */ 
 
    init_free_comp(free_comp);
 
@@ -100,7 +96,7 @@ void dispatcher(){
 	// (proces dla każdego targetu)
 
 	child_count = 0;
-   
+
 	while(!targets.empty() || child_count > 0){
 		while (!targets.empty() && !free_comp.empty()){
 			Target *t = targets.back();
@@ -145,21 +141,5 @@ void dispatcher(){
 		
 		mark_realized(t, targets);
 	}
-}
-
-
-/* tests */
-
-/* realize */
-
-void realize_test(){
-	Target t("t1");
-	Computer c;
-	t.set_command("echo ala\necho alala\necho ololo");
-	realize(&t, &c);
-}
-
-void jakis_test(){
-   
 }
 
