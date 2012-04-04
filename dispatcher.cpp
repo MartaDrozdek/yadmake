@@ -10,7 +10,6 @@
 #include <boost/foreach.hpp>
 #include <string>
 
-
 using namespace std;
 
 class Computer{};
