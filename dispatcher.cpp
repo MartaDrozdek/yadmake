@@ -74,20 +74,20 @@ void dispatcher(){
 	map<pid_t, Computer *> comp;
 	int child_count;
    vector<string> basics;
-	// read data about available computers
-
-	// connect with them (check connection or sth)
 
 	// get graph
 	DependencyGraph dependency_graph(0);
    print("dep graph");
    print_main_leaf(&dependency_graph);
    // get commands      TODO
-
+   // rzuca wyjatkiem
+/*
    basics.push_back("make");
    count_commands(&dependency_graph, basics, "blah");
    print("count commands");
+*/
 
+   // wyrzucic z dispatchera (moze jako argumet?)
    init_free_comp(free_comp);
 
 	// init targets
@@ -142,4 +142,3 @@ void dispatcher(){
 		mark_realized(t, targets);
 	}
 }
-
