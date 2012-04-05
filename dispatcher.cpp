@@ -11,6 +11,10 @@
 #include "dbparser.hpp"
 #include "commands.h"
 
+/*
+ * wersja z printami do debugu
+ */
+
 using namespace std;
 
 void print(const char s[]){
