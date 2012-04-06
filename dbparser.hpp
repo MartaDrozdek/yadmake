@@ -54,10 +54,6 @@ class Target {
 	Target(const std::string& _name);
 	virtual ~Target();
 	
-	bool realized;		/* czy juz zrobiony TODO niepotrzebne? */
-
-	int topo_ord;		/* ile dependencies jeszcze nie zrealizowanych */
-
 	int inord;
 
 	std::list<Target*> dependent_targets;

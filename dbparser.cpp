@@ -28,7 +28,7 @@ void Target::addDependency(Target* target) {
 	++inord;
 }
 
-Target::Target(const string& _name) : id(Target::idcounter++), name(_name), realized(false), inord(0) {
+Target::Target(const string& _name) : id(Target::idcounter++), name(_name), inord(0) {
 }
 
 Target::~Target() {
