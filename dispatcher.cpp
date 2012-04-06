@@ -78,7 +78,7 @@ void dispatcher(){
    vector<string> basics;
 
 	// get graph
-	DependencyGraph dependency_graph(0);
+	DependencyGraph dependency_graph(dup(0));
    print("dep graph");
    print_main_leaf(&dependency_graph);
    

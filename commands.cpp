@@ -5,7 +5,6 @@
 #include <string>
 #include <stdexcept>
 
-
 using std::vector;
 using std::list;
 using std::string;
@@ -56,12 +55,27 @@ void count_one_level(const vector<string>& basics, const string& delimiter,
    string commands = exec("make", options);
 
    size_t pos = 0;
+   string delima = "make: `blah' is up to date.";
+   string delimb = "echo blah";
    for (vector<Target*>::const_iterator it = to_make.begin(); it != to_make.end(); ++it) {
-      size_t delimiter_pos = commands.find(delimiter, pos);
-      if (delimiter_pos == string::npos)
+      size_t delima_pos = commands.find(delima, pos);
+      size_t delimb_pos = commands.find(delimb, pos);
+
+	  size_t delim_pos = delima_pos;
+	  if (delima_pos != string::npos && delimb_pos != string::npos && delimb_pos < delima_pos)
+		  delim_pos = delimb_pos;
+	  if (delima_pos == string::npos)
+		  delim_pos = delimb_pos;
+
+      if (delim_pos == string::npos)
 		 throw std::length_error("Lack of commands in a level\n");
-      string command = commands.substr(pos, delimiter_pos - pos);
-      pos = delimiter_pos + delimiter.length() + 1;
+
+      string command = commands.substr(pos, delim_pos - pos);
+
+	  if (delim_pos == delima_pos)
+      	pos = delima_pos + delima.length() + 1;
+	  else
+      	pos = delimb_pos + delimb.length() + 1;
       (*it)->command = command;
    }
 }
@@ -70,11 +84,14 @@ void count_one_level(const vector<string>& basics, const string& delimiter,
 void count_commands(DependencyGraph* graph, const vector<string>& basics, const string& delimiter) {
    vector<vector<Target*> > levels = get_levels(graph);
 
+   vector<string> n_basics = basics;
+   n_basics.push_back("-n");
+
    if (levels.empty()) return;
-   count_one_level(basics, delimiter, *levels.begin(), vector<Target*>());
+   count_one_level(n_basics, delimiter, *levels.begin(), vector<Target*>());
    for (vector<vector<Target*> >::iterator it = levels.begin() + 1;
          it != levels.end(); ++it)
-      count_one_level(basics, delimiter, *it, *(it - 1));
+      count_one_level(n_basics, delimiter, *it, *(it - 1));
 }
    
 
