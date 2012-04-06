@@ -36,3 +36,5 @@ clean:
 debug:
 	@echo $(OBJECTS)
 
+blah:
+	@echo blah

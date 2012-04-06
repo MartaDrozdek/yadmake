@@ -1,4 +1,4 @@
 
 dmake jest wyzej,
 
-make -pq | ./dmake
+make -p | ../dmake
