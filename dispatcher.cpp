@@ -85,10 +85,11 @@ void dispatcher(){
    print_main_leaf(&dependency_graph);
    // get commands      TODO
    // rzuca wyjatkiem
-   
+/*
    basics.push_back("make");
    count_commands(&dependency_graph, basics, "blah");
    print("count commands");
+*/
 
    // wyrzucic z dispatchera (moze jako argumet?)
    init_free_comp(free_comp);
