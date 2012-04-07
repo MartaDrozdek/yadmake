@@ -33,6 +33,9 @@ $(ALL) : % : %.o $(OBJECTS)
 clean:
 	-rm -f *.o *~ $(ALL) $(ALLOBJECTS) $(DEPENDS)
 
+c:
+	-rm -f *.o *~ $(ALL) $(ALLOBJECTS) $(DEPENDS)
+
 debug:
 	@echo $(OBJECTS)
 

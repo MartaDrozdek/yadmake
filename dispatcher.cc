@@ -39,16 +39,17 @@ void print_main_leaf(DependencyGraph * graph){
 /* bierze target, wykonuje wszystkie komendy w command */
 int realize(Target * t, Computer * c){
    
-   print("realize:");
-   print(t->kName_.c_str());
 	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 	
 	boost::char_separator<char> sep("\n");
    tokenizer tok(t->command_, sep);
 
-	BOOST_FOREACH(string s, tok)
-		system(s.c_str());
-	
+	BOOST_FOREACH(string s, tok){
+      print(s.c_str());
+		if (system(s.c_str()) == -1)
+            error();
+   }
+
 	return 0;
 }
 
@@ -57,7 +58,11 @@ int realize(Target * t, Computer * c){
  * add them to targets */
 void mark_realized(Target * t, vector<Target*> & targets){
 
+   if (t == NULL)
+      error();
    BOOST_FOREACH(Target * i, t->dependent_targets_){
+      if (i == NULL)
+         error();
       --(i->inord_);
       if (i->inord_== 0)
          targets.push_back(i);
@@ -77,15 +82,16 @@ void dispatcher(){
 	int child_count;
    vector<string> basics;
 
+
 	// get graph
 	DependencyGraph dependency_graph(dup(0));
-   print("dep graph");
-   print_main_leaf(&dependency_graph);
+//   print("dep graph");
+//   print_main_leaf(&dependency_graph);
    
-   // TODO nie działa
+   // get commands for targets
    basics.push_back("make");
    count_commands(&dependency_graph, basics, "blah");
-   print("count commands");
+//   print("count commands");
 
    // wyrzucic z dispatchera (moze jako argumet?)
    init_free_comp(free_comp);
@@ -94,6 +100,8 @@ void dispatcher(){
 	targets = dependency_graph.leaf_targets_;
 
 	// (proces dla każdego targetu)
+
+   print("\nGO!\n");
 
 	child_count = 0;
 
@@ -120,25 +128,25 @@ void dispatcher(){
 					++child_count;
 					comp[who] = c;
 					targ[who] = t;
-					break;
+               break;
 			}
 		}
 
 		int status;
 		pid_t who;
 
-		who = wait(&status);
-		if (status != 0){
+      who = wait(&status);
+      
+		if (who == -1 || status != 0)
 			error();
-		}
+
 		--child_count;
 
 		free_comp.push_back(comp[who]);
 		comp.erase(who);
-
 		Target *t = targ[who];
 		targ.erase(who);
-		
+
 		mark_realized(t, targets);
 	}
 }

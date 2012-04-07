@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>      // TODO remove
 #include <stdio.h>
 #include <string>
 #include <vector>
@@ -76,7 +77,13 @@ string exec(const string& programme, const vector<string>& arguments) {
 		//	if (close(conn[0]) == -1)	syserr("close error");
 
 			std::cout << "\nresult in exec:\n" << result << std::endl;
-
+         
+      /* uwaga Wacek tu był TODO*/
+         int status;
+         pid_t child_pid = wait(&status);
+         if (child_pid == -1)
+            syserr("wait error in exec.cc");
+      /* az dotąd */   
 			return result;
 	}
 }

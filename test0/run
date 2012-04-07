@@ -1,1 +1,6 @@
-make -pq | ../dmake
+
+cp ../dmake .
+make -pq > in
+make clean
+./dmake < in
+
