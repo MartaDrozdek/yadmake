@@ -9,6 +9,9 @@
 using std::string;
 using std::vector;
 
+// TODOl usunac
+#include <iostream>
+
 char** get_args(const vector<string>& v_args) {
 	char** args = new char*[v_args.size() + 1];
 	for (size_t i = 0; i < v_args.size(); ++i) {
@@ -55,6 +58,8 @@ string exec(const string& programme, const vector<string>& arguments) {
 			}
 			if (bytes == -1)			syserr("read error");
 			if (close(conn[0]) == -1)	syserr("close error");
+
+			//std::cout << "\nresult in exec:\n" << result << std::endl;
 
 			return result;
 	}

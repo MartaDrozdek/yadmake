@@ -107,8 +107,6 @@ void count_commands(DependencyGraph* graph, const vector<string>& basics, const 
 
    // TODO: usunac
    vector<string> targets;
-   targets.push_back("a.cpp");
-   targets.push_back("main.cpp");
    targets.push_back("all");
    graph->TrimToTargets(targets);
    // koniec 
@@ -118,12 +116,6 @@ void count_commands(DependencyGraph* graph, const vector<string>& basics, const 
 
    vector<string> n_basics = basics;
    n_basics.push_back("-n");
-   // TODO: usunac i cos poradzic!
-   n_basics.push_back("-o");
-   n_basics.push_back("%");
-   n_basics.push_back("-o");
-   n_basics.push_back("(%)");
-   // koniec
 
 
    if (levels.empty()) return;

@@ -198,7 +198,7 @@ void Target::MarkSubtreeIfTarget(bool if_target) {
 	if (is_target_ == if_target)
 		return;
 	is_target_ = if_target;
-	BOOST_FOREACH(Target* t, dependent_targets_)
+	BOOST_FOREACH(Target* t, dependencies_)
 		t->MarkSubtreeIfTarget(if_target);
 }
 
