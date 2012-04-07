@@ -1,4 +1,4 @@
-#include "dbparser.hpp"
+#include "dbparser.h"
 #include <vector>
 #include <string>
 /* Adds commands to targets */

@@ -8,7 +8,7 @@
 #include <string>
 #include <boost/foreach.hpp>
 #include <string>
-#include "dbparser.hpp"
+#include "dbparser.h"
 #include "commands.h"
 
 /*
@@ -27,12 +27,12 @@ void error(){
 
 void print_main_leaf(DependencyGraph * graph){
    print("main:");
-	BOOST_FOREACH(Target * t, graph->main_targets)
-      print(t->name.c_str());
+	BOOST_FOREACH(Target * t, graph->main_targets_)
+      print(t->kName_.c_str());
 
    print("leaf:");
-	BOOST_FOREACH(Target * t, graph->leaf_targets)
-      print(t->name.c_str());
+	BOOST_FOREACH(Target * t, graph->leaf_targets_)
+      print(t->kName_.c_str());
    print("");
 }
 
@@ -40,11 +40,11 @@ void print_main_leaf(DependencyGraph * graph){
 int realize(Target * t, Computer * c){
    
    print("realize:");
-   print(t->name.c_str());
+   print(t->kName_.c_str());
 	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 	
 	boost::char_separator<char> sep("\n");
-   tokenizer tok(t->command, sep);
+   tokenizer tok(t->command_, sep);
 
 	BOOST_FOREACH(string s, tok)
 		system(s.c_str());
@@ -57,9 +57,9 @@ int realize(Target * t, Computer * c){
  * add them to targets */
 void mark_realized(Target * t, vector<Target*> & targets){
 
-   BOOST_FOREACH(Target * i, t->dependent_targets){
-      --(i->inord);
-      if (i->inord== 0)
+   BOOST_FOREACH(Target * i, t->dependent_targets_){
+      --(i->inord_);
+      if (i->inord_== 0)
          targets.push_back(i);
    }
 }
@@ -91,7 +91,7 @@ void dispatcher(){
    init_free_comp(free_comp);
 
 	// init targets
-	targets = dependency_graph.leaf_targets;
+	targets = dependency_graph.leaf_targets_;
 
 	// (proces dla każdego targetu)
 
