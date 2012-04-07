@@ -1,0 +1,6 @@
+make: *** No rule to make target `%'.  Stop.
+terminate called after throwing an instance of 'std::length_error'
+  what():  Lack of commands in a level
+
+./run.sh: line 5:  7272 Exit 1                  make -pq
+      7273 Aborted                 | ./dmake
